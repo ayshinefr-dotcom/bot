@@ -16,7 +16,7 @@ Type these commands in Slack:
 
 
 What I struggled with:
-I got stuck while setting it up on the server. The deployment guide was confusing, so I used AI to help break down the steps into simple words. The biggest headache was fixing the invalid_auth errors and making the responses public in Slack channels. Other than that all the work was done by me following the guide and i was a wonderful experiance coding for the first time in my life and learning how to make a slack bot 
+I got stuck while setting it up on the server. The deployment guide was confusing, so I used AI to help break down the steps into simple words. The biggest headache was fixing the invalid_auth errors and making the responses public in Slack channels. Other than that all the work was done by me following the guide and it was a wonderful experiance coding for the first time in my life and learning how to make a slack bot 
 
 Links:
 GitHub: https://github.com/ayshinefr-dotcom/bot  
