@@ -14,10 +14,6 @@ Type these commands in Slack:
 - /asphalt-company – random space company info
 - /asphalt-iss – live ISS location
 
-How I built it:
-- Node.js with the Slack Bolt SDK
-- Fetches data from NASA, SpaceX, and other public APIs
-- Deployed on a Debian server using PM2 so it stays online
 
 What I struggled with:
 I got stuck while setting it up on the server. The deployment guide was confusing, so I used AI to help break down the steps into simple words. The biggest headache was fixing the invalid_auth errors and making the responses public in Slack channels.
