@@ -8,10 +8,9 @@ Type these commands in Slack:
 - /asphalt-help – shows all commands
 - /asphalt-spacefact – random space fact
 - /asphalt-astro – NASA's picture of the day
-- /asphalt-mars – random Mars rover photo
-- /asphalt-launch – latest SpaceX launch
+
+
 - /asphalt-news – latest space news
-- /asphalt-company – random space company info
 - /asphalt-iss – live ISS location
 
 
