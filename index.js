@@ -51,7 +51,6 @@ app.command("/asphalt-help", async ({ ack, respond }) => {
 🚀 /asphalt-ping - Check if mission control is online
 🪐 /asphalt-spacefact - Get a random space fact
 🌠 /asphalt-astro - Get NASA's Astronomy Picture of the Day
-☄️ /asphalt-mars - Get latest Mars rover photos
 👨‍🚀 /asphalt-help - Show this mission briefing`
   });
 });
@@ -118,76 +117,6 @@ ${explanation}
   }
 });
 
-// ============================================
-// COMMAND 5: /asphalt-mars
-// ============================================
-app.command("/asphalt-mars", async ({ ack, respond }) => {
-  await ack();
-
-  try {
-    // Get latest Mars rover photos from NASA API
-    const response = await axios.get("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos", {
-      params: {
-        sol: 1000,  // Martian day
-        api_key: "DEMO_KEY"
-      }
-    });
-
-    const photos = response.data.photos;
-    
-    if (photos && photos.length > 0) {
-      const randomPhoto = photos[Math.floor(Math.random() * photos.length)];
-      await respond({
-        text:
-`🔴 *Mars Rover Photo* 🚀
-
-*Rover:* ${randomPhoto.rover.name}
-*Camera:* ${randomPhoto.camera.full_name}
-*Martian Day (Sol):* ${randomPhoto.sol}
-*Earth Date:* ${randomPhoto.earth_date}
-
-📸 ${randomPhoto.img_src}`
-      });
-    } else {
-      await respond({ text: "🔴 No Mars photos available right now. Try again later!" });
-    }
-  } catch (err) {
-    await respond({ 
-      text: "🌠 Failed to fetch Mars photos. The red planet is being shy!" 
-    });
-  }
-});
-
-// ============================================
-// COMMAND 6: /asphalt-launch (Bonus)
-// ============================================
-app.command("/asphalt-launch", async ({ ack, respond }) => {
-  await ack();
-
-  try {
-    // Get latest SpaceX launch data
-    const response = await axios.get("https://api.spacexdata.com/v4/launches/latest");
-    
-    const { name, date_utc, details, links } = response.data;
-    const patchUrl = links.patch?.small || "No image available";
-    
-    await respond({
-      text:
-`🚀 *Latest SpaceX Launch* 🛸
-
-*Mission:* ${name}
-*Date:* ${new Date(date_utc).toLocaleDateString()}
-
-${details || "No mission details available."}
-
-🔗 Watch the launch: ${links.webcast || "Not available"}`
-    });
-  } catch (err) {
-    await respond({ 
-      text: "🌠 Failed to fetch launch data. The rockets are refueling!" 
-    });
-  }
-});
 
 // ============================================
 // Start the bot
@@ -230,40 +159,7 @@ ${article.summary || "No summary available."}
     await respond({ text: "🌠 Failed to fetch space news. Signal lost in space!" });
   }
 });
-// Get random space company info
-app.command("/asphalt-company", async ({ ack, respond }) => {
-  await ack();
 
-  try {
-    const response = await axios.get("https://spaceodysseyhub.com/api/space-data/companies");
-    const companies = response.data.companies;
-
-    if (companies && companies.public && companies.public.length > 0) {
-      const randomCompany = companies.public[Math.floor(Math.random() * companies.public.length)];
-      
-      await respond({
-        text:
-`🏢 *Space Company Profile* 🛰️
-
-*Name:* ${randomCompany.name}
-*Type:* ${randomCompany.type}
-*Founded:* ${randomCompany.founded}
-*Valuation:* ${randomCompany.valuation}
-
-*Key Products/Services:*
-${randomCompany.keyProducts.map(p => `• ${p}`).join('\n')}
-
----
-💡 Data source: SpaceOdysseyHub`
-      });
-    } else {
-      await respond({ text: "🏢 Unable to fetch company data. Try again later!" });
-    }
-  } catch (err) {
-    console.error("Company API error:", err);
-    await respond({ text: "🌠 Failed to fetch space company. Database is on a space trip!" });
-  }
-});
 // Get ISS real-time location
 app.command("/asphalt-iss", async ({ ack, respond }) => {
   await ack();
